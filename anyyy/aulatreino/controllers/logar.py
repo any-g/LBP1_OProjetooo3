@@ -38,3 +38,21 @@ def logar():
 def deslogar():
     session.pop("nome", None)
     return redirect(url_for("login.login"))
+
+@loginController.route("/set_cookie")
+def set_cookie():
+    cokando=make_response("Deu certo o cookie")
+    cokando.set_cookie("flor", "sla", max_age=60*60*24)
+    
+@loginController.route("/get_cookie")
+def get_cookie():
+   flor = request.cookies["flor"]
+    if flor:
+        return f"Nome é {flor}"
+    return "Not found!"
+
+@loginController.route("/delete_cookie")
+def delete_cookie():
+    cokando=make_response("Deu certo o cookie")
+    cokando.set_cookie("flor", "sla", expires=0)
+    return cokando
