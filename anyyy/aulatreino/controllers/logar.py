@@ -12,11 +12,16 @@ def logar():
 @app.errorhandler(naocadastro)
 def (e):
     return render_ template ("erro.html", message = "Não está cadastrado!"), 500
-    
-@loginController.route("/verificar", method=["POST, GET"])
-def verificar():
+@loginController.route("/admin")
+def adiministrador():
     nome = request.form["nome"]
     senha = request.form["senha"]
+    if senha==5678 and nome =="Admin":
+        session['nome']=nome
+        return "<p>Página admin"</p>
+    return abort(403)
+@loginController.route("/verificar", method=["POST, GET"])
+def verificar():
     if senha==1234 and nome =="Any":
         session['nome']=nome
         flash.sucess("Login de sucesso!")
