@@ -5,3 +5,4 @@ class User:
         self.id = id
 
 users = [User("Any", 1234, 0)]
+users.append(User("Admin", 5678, 1))
