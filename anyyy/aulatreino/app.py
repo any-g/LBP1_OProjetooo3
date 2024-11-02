@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, redirect, url_for, request
+from flask import Flask, render_template, session, redirect, url_for, request, flash
 from aulatreino.controllers.logar import loginController
 
 app = Flask(__name__)
@@ -6,11 +6,11 @@ app.registerBlueprint(loginController)
 app.secret_key = "anyany"
 #criptografar os cookies 
 
-publicroutes=["login.logar", "login.verificar"]
+public_routes=["login.logar", "login.verificar"]
 
 @app.before_request
 def funcao():
-    if request.endpoint == publicroutes:
+    if request.endpoint == public_routes:
         return
     if 'nome' in session:
         return redirect(url_for("login.logarr"))
